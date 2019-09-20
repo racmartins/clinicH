@@ -98,7 +98,7 @@
           </div>
           <div class="custom-control custom-radio mb-3">
             <input name="type" class="custom-control-input" id="type2" type="radio"
-              @if(old('type') == 'Examen') checked @endif value="Examen">
+              @if(old('type') == 'Exame') checked @endif value="Exame">
             <label class="custom-control-label" for="type2">Exame</label>
           </div>
           <div class="custom-control custom-radio mb-3">

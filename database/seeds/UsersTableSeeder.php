@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         	 'role' => 'admin'
     	]);
         User::create([
-             'name' => 'Paciente 1',
+             'name' => 'Paciente teste',
              'email' => 'paciente@hotmail.com',
              'password' => bcrypt('12345678'), // password
              //'identity_card' => Str::random(10),
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
              'role' => 'patient'
         ]);
         User::create([
-             'name' => 'Médico 1',
+             'name' => 'Médico teste',
              'email' => 'medico@hotmail.com',
              'password' => bcrypt('12345678'), // password
              //'identity_card' => Str::random(10),

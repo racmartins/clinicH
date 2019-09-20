@@ -2,7 +2,7 @@ let $doctor, $date, $specialty, $hours;
 let iRadio;
 
 const noHoursAlert = `<div class="alert alert-danger" role="alert">
-    <strong>Lamntamos!</strong> Não se encontraram horas disponíveis para o médico no dia selecionado.
+    <strong>Lamentamos!</strong> Não se encontraram horas disponíveis para o médico dia selecionado.
 </div>`;
 
 $(function () {
@@ -11,9 +11,9 @@ $(function () {
   $date = $('#date');
   $hours = $('#hours');
 
-$specialty.change(() => {
+  $specialty.change(() => {
     const specialtyId = $specialty.val();
-    const url = `/api/specialties/${specialtyId}/doctors`;
+    const url = `/specialties/${specialtyId}/doctors`;
     $.getJSON(url, onDoctorsLoaded);
   });
 
@@ -31,42 +31,42 @@ function onDoctorsLoaded(doctors) {
 }
 
 function loadHours() {
-  const selectedDate = $date.val();
-  const doctorId = $doctor.val();
-  const url = `/api/schedule/hours?date=${selectedDate}&doctor_id=${doctorId}`;
+	const selectedDate = $date.val();
+	const doctorId = $doctor.val();
+	const url = `/schedule/hours?date=${selectedDate}&doctor_id=${doctorId}`;
     $.getJSON(url, displayHours);
 }
 
 function displayHours(data) {
-  if (!data.morning && !data.afternoon ||
-    data.morning.length===0 && data.afternoon.length===0) {
+	if (!data.morning && !data.afternoon ||
+		data.morning.length===0 && data.afternoon.length===0) {
 
-    $hours.html(noHoursAlert);
-    return;
-  }
+		$hours.html(noHoursAlert);
+		return;
+	}
 
-  let htmlHours = '';
-  iRadio = 0;
+	let htmlHours = '';
+	iRadio = 0;
 
-  if (data.morning) {
-    const morning_intervals = data.morning;
-    morning_intervals.forEach(interval => {
-      htmlHours += getRadioIntervalHtml(interval);
-    });
-  }
-  if (data.afternoon) {
-    const afternoon_intervals = data.afternoon;
-    afternoon_intervals.forEach(interval => {
-      htmlHours += getRadioIntervalHtml(interval);
-    });
-  }
-  $hours.html(htmlHours);
+	if (data.morning) {
+		const morning_intervals = data.morning;
+		morning_intervals.forEach(interval => {
+			htmlHours += getRadioIntervalHtml(interval);
+		});
+	}
+	if (data.afternoon) {
+		const afternoon_intervals = data.afternoon;
+		afternoon_intervals.forEach(interval => {
+			htmlHours += getRadioIntervalHtml(interval);
+		});
+	}
+	$hours.html(htmlHours);
 }
 
 function getRadioIntervalHtml(interval) {
-  const text = `${interval.start} - ${interval.end}`;
+	const text = `${interval.start} - ${interval.end}`;
 
-  return `<div class="custom-control custom-radio mb-3">
+	return `<div class="custom-control custom-radio mb-3">
   <input name="scheduled_time" value="${interval.start}" class="custom-control-input" id="interval${iRadio}" type="radio" required>
   <label class="custom-control-label" for="interval${iRadio++}">${text}</label>
 </div>`;

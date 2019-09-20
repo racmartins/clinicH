@@ -38,6 +38,5 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
       </form>
      </div>
-
    </div>
 @endsection
